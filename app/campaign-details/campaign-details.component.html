@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <title>CampaignDetail</title>
+</head>
+<body>
+  <div class="container-fluid">
+    <h3>Campaign List</h3>
+    <ul class="campaignClass">
+        <li *ngFor="let campaignDetail of campaignDetails">
+          <span class="badge">{{campaignDetail.campaignID}}</span> {{campaignDetail.campaignName}}
+          <button class="delete" title="delete Campaign"
+                (click)="delete()">x</button>
+        </li>
+      </ul>
+      <button type="button" class="btn btn-info" (click)="openModal()">Add Campaign</button>
+      <div class="backdrop" [ngStyle]="{'display':display3}"></div>
+
+      <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display3}">
+
+       <div class="modal-dialog" role="document">
+
+         <div class="modal-content">
+
+          <div class="modal-header">
+              <h4 class="modal-title">Add Campaign</h4>
+            <button type="button" class="close" (click)="onClose()">&times;</button>
+          </div>
+
+           <div class="modal-body">
+              <form [formGroup]="CampaignForm" (ngSubmit)="onSubmit()" >
+                <div class="form-group">
+                <label for="Ename">Campaign Name</label>
+                <input type="text" id="Cname" name="Campaign Name" placeholder=" name.." required>
+                </div>
+              </form>
+           </div>
+           <div class="modal-footer">
+            <input class="btn btn-info"  type="submit"  value="Submit">
+            <button type="button" id="closeBtn" class="btn btn-danger" (click)="onClose()">Close</button>
+           </div>
+
+         </div><!-- /.modal-content -->
+
+       </div><!-- /.modal-dialog -->
+
+      </div><!-- /.modal !-->
+  </div>
+</body>
+</html>
